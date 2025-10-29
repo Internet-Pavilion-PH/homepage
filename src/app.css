@@ -1,5 +1,12 @@
-/* Tailwind preflight and utilities (simple setup) */
-@import "tailwindcss/preflight";
-@tailwind utilities;
+/* Google Font VT323 for site text */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+/* Tailwind v4: import all layers (preflight, components, utilities) */
+@import "tailwindcss";
+
+/* Set VT323 as the default font for the site text */
+html, body {
+	font-family: 'VT323', monospace;
+}
 
 /* Add global styles or component-specific utilities below */
