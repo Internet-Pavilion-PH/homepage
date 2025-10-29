@@ -1,0 +1,5 @@
+/* Tailwind preflight and utilities (simple setup) */
+@import "tailwindcss/preflight";
+@tailwind utilities;
+
+/* Add global styles or component-specific utilities below */
