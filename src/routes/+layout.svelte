@@ -1,9 +1,9 @@
 <script lang="ts">
 	import '../app.css';
-	import { base } from '$app/paths';
+	
 
 	let { children } = $props();
-	const favicon = `${base}/lbd1.png`;
+	const favicon = `/lbd.svg`;
 </script>
 
 <svelte:head>
