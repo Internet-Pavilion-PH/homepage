@@ -6,7 +6,7 @@
 </script>
 
 <main class="min-h-screen w-full flex flex-col bg-white overflow-x-hidden">
-	<section id="hero" class="flex-1 flex items-center justify-center">
+	<section id="hero" class="flex-1 flex items-center justify-center py-3">
 		<img
 			src={src}
 			alt="lbd"
