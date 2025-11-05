@@ -1,8 +1,6 @@
 <script lang="ts">
   export let data: { html: string };
 
-  // Render the HTML provided by the prerender step without local rewrites.
-  // The markdown should use absolute/raw URLs when needed (e.g. raw.githubusercontent.com).
   $: htmlSafe = data?.html || '';
 </script>
 
