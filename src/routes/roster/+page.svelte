@@ -3,6 +3,17 @@
 </script>
 
 <main class="min-h-screen bg-[#006C35] py-12 px-4">
+  <div class="max-w-4xl mx-auto px-4 mb-4 flex justify-center">
+    <a
+      href="https://github.com/Internet-Pavilion-PH/notes/blob/main/cyber_purok_bio.md"
+      target="_blank"
+      rel="noopener"
+      class="text-white underline text-center"
+    >
+      Edit this content on GitHub
+    </a>
+  </div>
+
   <div class="prose prose-invert max-w-4xl mx-auto p-6 info-container text-white text-3xl">
     {@html data.html}
   </div>
