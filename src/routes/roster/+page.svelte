@@ -1,17 +1,9 @@
 <script lang="ts">
-  import { base } from '$app/paths';
   export let data: { html: string };
 
-  function rewriteLocal(html: string) {
-    if (!html) return html;
-    return html.replace(/(src|href)=(['\"])\/([^"']+)\2/gi, (_m, attr, quote, path) => {
-      const prefix = base || '';
-      const joined = prefix.endsWith('/') ? `${prefix}${path}` : `${prefix}/${path}`;
-      return `${attr}=${quote}${joined}${quote}`;
-    });
-  }
-
-  $: htmlSafe = rewriteLocal(data?.html || '');
+  // Render the HTML provided by the prerender step without local rewrites.
+  // The markdown should use absolute/raw URLs when needed (e.g. raw.githubusercontent.com).
+  $: htmlSafe = data?.html || '';
 </script>
 
 
