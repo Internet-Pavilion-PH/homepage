@@ -2,6 +2,7 @@
   export let data: { html: string };
 </script>
 
+
 <main class="min-h-screen bg-[#006C35] py-12 px-4">
   <div class="max-w-4xl mx-auto px-4 mb-4 flex justify-center">
     <a
