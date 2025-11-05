@@ -1,5 +1,17 @@
 <script lang="ts">
+  import { base } from '$app/paths';
   export let data: { html: string };
+
+  function rewriteLocal(html: string) {
+    if (!html) return html;
+    return html.replace(/(src|href)=(['\"])\/([^"']+)\2/gi, (_m, attr, quote, path) => {
+      const prefix = base || '';
+      const joined = prefix.endsWith('/') ? `${prefix}${path}` : `${prefix}/${path}`;
+      return `${attr}=${quote}${joined}${quote}`;
+    });
+  }
+
+  $: htmlSafe = rewriteLocal(data?.html || '');
 </script>
 
 <main class="min-h-screen bg-[#006C35] py-12 px-4">
@@ -15,7 +27,7 @@
   </div>
 
   <div class="prose prose-invert max-w-4xl mx-auto p-6 info-container text-white text-3xl">
-    {@html data.html}
+    {@html htmlSafe}
   </div>
 </main>
 
