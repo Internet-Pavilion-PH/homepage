@@ -1,8 +1,31 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+  import { marked } from 'marked';
+  import DOMPurify from 'dompurify';
+
+  // Keep `data` as a fallback for SSR/prerender (if present), but prefer live fetch.
   export let data: { html: string };
 
-  
-  $: htmlSafe = data?.html || '';
+  // reactive HTML used in the template
+  let htmlSafe: string = data?.html || '';
+
+  const rawUrl = 'https://raw.githubusercontent.com/Internet-Pavilion-PH/notes/main/low_bandwidth_dreams.md';
+
+  onMount(async () => {
+    try {
+      const res = await fetch(rawUrl);
+      if (!res.ok) {
+        console.warn('Could not fetch remote markdown:', res.status, res.statusText);
+        return;
+      }
+      const md = await res.text();
+      const unsafe = await Promise.resolve(marked.parse(md));
+      // sanitize before injecting
+      htmlSafe = DOMPurify.sanitize(unsafe as string);
+    } catch (err) {
+      console.error('Error fetching markdown:', err);
+    }
+  });
 </script>
 
 <main class="min-h-screen bg-[#006C35] py-12 px-4">
@@ -12,7 +35,7 @@
       target="_blank"
       rel="noopener"
       class="text-white underline"
-      >
+    >
       Edit this page on GitHub
     </a>
   </div>
@@ -69,6 +92,36 @@
   :global(.info-container ol li) {
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
+  }
+
+  /* Make list markers visible on dark background */
+  :global(.info-container ul),
+  :global(.info-container ol) {
+    padding-left: 1.25rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  :global(.info-container li::marker) {
+    color: #fff;
+    opacity: 0.95;
+  }
+
+  /* Force visible list markers (handles prose/typography overrides) */
+  :global(.info-container ul) {
+    list-style-type: disc !important;
+    list-style-position: outside !important;
+  }
+
+  :global(.info-container ol) {
+    list-style-type: decimal !important;
+    list-style-position: outside !important;
+  }
+
+  /* Fallback for environments that don't support ::marker */
+  :global(.info-container li) {
+    color: inherit;
+    display: list-item;
   }
 
   /* Ensure images and iframes fit */
