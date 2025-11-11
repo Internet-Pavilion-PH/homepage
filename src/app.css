@@ -9,4 +9,11 @@ html, body {
 	font-family: 'VT323', monospace;
 }
 
+/* Make the page background match Tailwind's green-700 and remove default body margin */
+/* reset body spacing but do not force a background color here — layout/main controls page background */
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
 /* Add global styles or component-specific utilities below */

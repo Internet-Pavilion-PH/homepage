@@ -28,8 +28,14 @@
   });
 </script>
 
-<main class="min-h-screen bg-[#006C35] py-12 px-4">
-  <div class="max-w-4xl mx-auto px-4 mb-4 flex justify-end">
+<main class="min-h-screen bg-green-700 py-12 px-4">
+
+
+  <div class="prose prose-invert max-w-4xl mx-auto p-6 info-container text-white text-3xl">
+    {@html htmlSafe}
+  </div>
+
+    <div class="max-w-4xl mx-auto px-4 mb-4 flex justify-center">
     <a
       href="https://github.com/Internet-Pavilion-PH/notes/blob/main/low_bandwidth_dreams.md"
       target="_blank"
@@ -39,11 +45,8 @@
       Edit this page on GitHub
     </a>
   </div>
-
-  <div class="prose prose-invert max-w-4xl mx-auto p-6 info-container text-white text-3xl">
-    {@html htmlSafe}
-  </div>
 </main>
+
 
 <style>
   /* Improve link and inline code visibility on the dark background */
@@ -94,6 +97,13 @@
     margin-bottom: 0.25rem;
   }
 
+  /* Ensure images and iframes fit */
+  :global(.info-container img),
+  :global(.info-container iframe) {
+    max-width: 100%;
+    height: auto;
+  }
+
   /* Make list markers visible on dark background */
   :global(.info-container ul),
   :global(.info-container ol) {
@@ -123,11 +133,6 @@
     color: inherit;
     display: list-item;
   }
-
-  /* Ensure images and iframes fit */
-  :global(.info-container img),
-  :global(.info-container iframe) {
-    max-width: 100%;
-    height: auto;
-  }
 </style>
+
+

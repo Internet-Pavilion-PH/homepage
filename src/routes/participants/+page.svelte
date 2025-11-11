@@ -26,8 +26,14 @@
 </script>
 
 
-<main class="min-h-screen bg-[#006C35] py-12 px-4">
-  <div class="max-w-4xl mx-auto px-4 mb-4 flex justify-center">
+<main class="min-h-screen bg-green-700 py-12 px-4">
+
+
+  <div class="prose prose-invert max-w-4xl mx-auto p-6 info-container text-white text-3xl">
+    {@html htmlSafe}
+  </div>
+
+    <div class="max-w-4xl mx-auto px-4 mb-4 flex justify-center">
     <a
       href="https://github.com/Internet-Pavilion-PH/notes/blob/main/cyber_purok_bio.md"
       target="_blank"
@@ -36,10 +42,6 @@
     >
       Edit this content on GitHub
     </a>
-  </div>
-
-  <div class="prose prose-invert max-w-4xl mx-auto p-6 info-container text-white text-3xl">
-    {@html htmlSafe}
   </div>
 </main>
 
