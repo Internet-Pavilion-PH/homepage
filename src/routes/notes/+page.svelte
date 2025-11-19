@@ -1,7 +1,10 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { marked } from 'marked';
-  import DOMPurify from 'dompurify';
+
+  // This page fetches markdown at runtime; disable prerender so the build
+  // doesn't attempt to fetch GitHub resources and fail with 404.
+  export const prerender = false;
 
   // Keep `data` as a fallback for SSR/prerender (if present), but prefer live fetch.
   export let data: { html: string };
@@ -9,7 +12,8 @@
   // reactive HTML used in the template
   let htmlSafe: string = data?.html || '';
 
-   const rawUrl = 'https://github.com/Internet-Pavilion-PH/notes/blob/main/cyber_purok_notes.md';
+  // Use the raw.githubusercontent URL so we fetch the raw markdown text
+  const rawUrl = 'https://raw.githubusercontent.com/Internet-Pavilion-PH/notes/main/cyber_purok_notes.md';
 
   onMount(async () => {
     try {
@@ -20,8 +24,15 @@
       }
       const md = await res.text();
       const unsafe = await Promise.resolve(marked.parse(md));
-      // sanitize before injecting
-      htmlSafe = DOMPurify.sanitize(unsafe as string);
+      // import DOMPurify dynamically (browser-only) and sanitize
+      try {
+        const dompurifyModule = (await import('dompurify')) as any;
+        const DOMPurify = (dompurifyModule.default ?? dompurifyModule) as any;
+        htmlSafe = DOMPurify.sanitize(unsafe as string);
+      } catch (err) {
+        console.warn('DOMPurify import failed, rendering raw HTML');
+        htmlSafe = unsafe as string;
+      }
     } catch (err) {
       console.error('Error fetching markdown:', err);
     }
