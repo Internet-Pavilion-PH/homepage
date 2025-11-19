@@ -36,6 +36,7 @@
 		<!-- Centered navigation -->
 		<nav aria-label="Main navigation" class="flex flex-wrap gap-4 justify-center">
 			<a href="/" class=" text-amber-50 text-lg">ESC 2025</a>
+			<a href="/notes" class=" text-amber-50 text-lg">Notes</a>
 			<a href="/info" class=" text-amber-50 text-lg">About</a>
 			<a href="/participants" class=" text-amber-50 text-lg">Participants</a>
 		</nav>
