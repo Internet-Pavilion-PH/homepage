@@ -16,8 +16,7 @@
   let participants: Participant[] = [];
   let loading = true;
   let error: string | null = null;
-  // Track expanded cards for click/tap (mobile) and keyboard
-  let expandedIds = new Set<string>();
+  // (no explicit expand toggle; bios reveal on hover/focus)
 
   // Raw URL to the participants.json in the notes repo
   const rawJson =
@@ -50,17 +49,7 @@
     }
   });
 
-  function toggleExpand(id: string, e?: Event) {
-    // ignore clicks that originated from inner interactive elements
-    if (e && (e.target as HTMLElement) !== (e.currentTarget as HTMLElement)) return;
-    if (expandedIds.has(id)) {
-      expandedIds.delete(id);
-    } else {
-      expandedIds.add(id);
-    }
-    // reassign to trigger Svelte reactivity
-    expandedIds = new Set(expandedIds);
-  }
+  // toggleExpand removed; bios are revealed via hover/focus CSS only
 </script>
 
 
@@ -75,10 +64,7 @@
     {:else}
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {#each participants as p}
-          <article
-            class="bg-green-800/60 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-150"
-            class:expanded={expandedIds.has(p.id)}
-          >
+          <article class="bg-green-800/60 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-150">
             <div class="flex items-center space-x-4">
               <img
                 src={p.image}
@@ -93,16 +79,7 @@
                     {#if p.badges && p.badges.length}
                       <span class="text-sm opacity-80">{p.badges.join(', ')}</span>
                     {/if}
-                    <!-- visible toggle for keyboard users / touch users -->
-                    <button
-                      type="button"
-                      class="ml-3 text-xs px-2 py-1 bg-white/5 rounded hover:bg-white/10"
-                      on:click={() => toggleExpand(p.id)}
-                      aria-expanded={expandedIds.has(p.id)}
-                      aria-controls={`bio-${p.id}`}
-                    >
-                      {#if expandedIds.has(p.id)}Hide bio{:else}Show bio{/if}
-                    </button>
+                    <!-- (bio revealed on hover or focus; toggle removed) -->
                   </div>
                 </div>
                 {#if p.location}

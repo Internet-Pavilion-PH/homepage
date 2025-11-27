@@ -1,0 +1,82 @@
+[
+  {
+    "image": "1.jpg",
+    "item_no": 1,
+    "local_name": "saging",
+    "english_name": "",
+    "draftsperson": "candy de leon",
+    "for": "ubo"
+  },
+  {
+    "image": "2.jpg",
+    "item_no": 2,
+    "local_name": "gabon",
+    "english_name": "",
+    "draftsperson": "boy tapang",
+    "for": ""
+  },
+  {
+    "image": "3.jpg",
+    "item_no": 3,
+    "local_name": "kalachuchi",
+    "english_name": "",
+    "draftsperson": "al moralde",
+    "for": ""
+  },
+  {
+    "image": "4.jpg",
+    "item_no": 4,
+    "local_name": "kamunggay",
+    "english_name": "",
+    "draftsperson": "cindy cinco",
+    "for": ""
+  },
+  {
+    "image": "5.jpg",
+    "item_no": 5,
+    "local_name": "okra",
+    "english_name": "",
+    "draftsperson": "brader",
+    "for": ""
+  },
+  {
+    "image": "6.jpg",
+    "item_no": 6,
+    "local_name": "sabila",
+    "english_name": "aloe vera",
+    "draftsperson": "max surban",
+    "for": ""
+  },
+  {
+    "image": "7.jpg",
+    "item_no": 7,
+    "local_name": "kapayas",
+    "english_name": "papaya",
+    "draftsperson": "cong tv",
+    "for": "dengue"
+  },
+  {
+    "image": "8.jpg",
+    "item_no": 8,
+    "local_name": "",
+    "english_name": "",
+    "draftsperson": "",
+    "for": ""
+  },
+  {
+    "image": "9.jpg",
+    "item_no": 9,
+    "local_name": "",
+    "english_name": "",
+    "draftsperson": "",
+    "for": ""
+  },
+  {
+    "image": "10.jpg",
+    "item_no": 10,
+    "local_name": "",
+    "english_name": "",
+    "draftsperson": "",
+    "for": ""
+  }
+]

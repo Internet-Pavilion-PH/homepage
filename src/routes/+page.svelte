@@ -31,7 +31,7 @@
 			</a>
 
 			
-			<a href="/">
+			<a href="/power_plant">
 		<img
 			src={powerplant}
 			alt="lbd"
@@ -40,11 +40,11 @@
 		/>
 	</a>
 
-			<a href="/" class="text-center text-amber-50 text-3xl md:text-4xl lg:text-5xl block mt-4">
+			<a href="/panawagan_banner" class="text-center text-amber-50 text-3xl md:text-4xl lg:text-5xl block mt-4">
 				Panawagan Banner
 			</a>
 
-			<a href="/" class="text-center text-amber-50 text-3xl md:text-4xl lg:text-5xl block mt-4">
+			<a href="https://kolown.net/dropcall" class="text-center text-amber-50 text-3xl md:text-4xl lg:text-5xl block mt-4">
 				Drop_Call
 			</a>
 
