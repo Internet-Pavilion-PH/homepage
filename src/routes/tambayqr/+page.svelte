@@ -9,7 +9,11 @@
   // Each card: { url: string, caption?: string }
   let cards: Card[] = [
     { url: 'https://lowbandwidthdreams.com', caption: 'Low Bandwidth Dreams' },
-    { url: 'https://cyberpurok.lowbandwidthdreams.com', caption: 'cyberpurok' }
+    { url: 'https://cyberpurok.lowbandwidthdreams.com', caption: 'cyberpurok' },
+    { url: 'https://yellowbasket.lowbandwidthdreams.com', caption: 'yellowbasket' },
+    { url: 'https://lowbandwidthdreams.com/power_plant', caption: 'power plant' },
+    { url: 'https://cyberpurok.lowbandwidthdreams.com/panawagan_banner', caption: 'panawagan banner' },
+    { url: 'https://kolown.net/dropcall', caption: 'dropcall' }
   ];
 
   onMount(() => {
