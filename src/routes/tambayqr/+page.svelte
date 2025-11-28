@@ -12,8 +12,8 @@
     { url: 'https://cyberpurok.lowbandwidthdreams.com', caption: 'cyberpurok' },
     { url: 'https://yellowbasket.lowbandwidthdreams.com', caption: 'yellowbasket' },
     { url: 'https://lowbandwidthdreams.com/power_plant', caption: 'power plant' },
-    { url: 'https://cyberpurok.lowbandwidthdreams.com/panawagan_banner', caption: 'panawagan banner' },
-    { url: 'https://kolown.net/dropcall', caption: 'dropcall' }
+    { url: 'https://lowbandwidthdreams.com/panawagan_banner', caption: 'panawagan banner' },
+    { url: 'https://kolown.net/H6tR9yWvB3q29kwnfnp', caption: 'dropcall' }
   ];
 
   onMount(() => {
