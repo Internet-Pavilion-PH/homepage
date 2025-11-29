@@ -1,18 +1,40 @@
-<script>
-    import plants from './data.json';
+<script lang="ts">
+    import * as Papa from 'papaparse';
+    import { onMount } from 'svelte';
+
+    // Public CSV export URL (Google Sheets published as CSV)
+    const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSEdKEDTTuFtg3hBpqhwPApiiTk6o0d3VxO5Gb6TqFp7Spt4XrKpBnwYITbTDAqZT-kYzQWw-KbplfI/pub?gid=0&single=true&output=csv';
+
+    let plants: any[] = [];
+    let status: string = '';
 
     const BASE_IMAGE_URL = 'https://streetkonect.com/storage/object_curator/powerplant';
 
-    /**
-     * Build a full URL for an image filename.
-     * @param {string} filename
-     */
-    function imageUrl(filename) {
+    // Build a full URL for an image filename.
+    function imageUrl(filename: string) {
         if (!filename) return '';
-        // if already a full URL, return as-is
         if (/^https?:\/\//.test(filename)) return filename;
         return `${BASE_IMAGE_URL.replace(/\/$/, '')}/${encodeURIComponent(filename)}`;
     }
+
+    onMount(async () => {
+        try {
+            status = 'Fetching CSV...';
+            const res = await fetch(csvUrl);
+            const data = await res.text();
+            const results = Papa.parse(data, {
+                header: true,
+                skipEmptyLines: true,
+                transformHeader: (h: any) => (h ?? '').toString().trim(),
+                transform: (v: any) => (v ?? '').toString().trim()
+            });
+            plants = Array.isArray(results.data) ? results.data : [];
+            status = `Loaded ${plants.length} rows`;
+        } catch (err) {
+            console.error('Failed to load CSV', err);
+            status = 'Error loading CSV';
+        }
+    });
 </script>
 
 <main class="min-h-screen flex flex-col items-center p-6">
@@ -40,6 +62,7 @@
                             <div class="text-sm text-gray-100"><span class="font-semibold">English name:</span> {plant.english_name}</div>
                             <div class="mt-2 text-sm text-gray-300"><span class="font-semibold">Draftsperson:</span> {plant.draftsperson}</div>
                              <div class="mt-2 text-sm text-gray-300"><span class="font-semibold">For:</span> {plant.for}</div>
+                            <div class="mt-1 text-sm text-gray-300"><span class="font-semibold">Status:</span> {plant.status}</div>
                         </div>
                     </div>
                 </article>
