@@ -4,7 +4,7 @@
 	
 
 	let { children } = $props();
-	const favicon = `/lbd.svg`;
+	const favicon = `https://internetpavilion2025.web.app/icon.svg`;
 </script>
 
 <svelte:head>

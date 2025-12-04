@@ -26,11 +26,11 @@
 	</a>
 
 	
-			<a href="https://yellowbasket.lowbandwidthdreams.com/" class="text-center text-amber-50 text-3xl md:text-4xl lg:text-5xl block mt-4">
-				Yellow Basket
-			</a>
 
-			
+			<a href="/panawagan_banner" class="text-center text-amber-50 text-3xl md:text-4xl lg:text-5xl block mt-4">
+				<p class ="text-6xl">Error 405: </p>
+				<p class="text-3xl">Panawagan Cannot Be Fulfilled</p>
+			</a>
 			<a href="/power_plant">
 		<img
 			src={powerplant}
@@ -40,8 +40,9 @@
 		/>
 	</a>
 
-			<a href="/panawagan_banner" class="text-center text-amber-50 text-3xl md:text-4xl lg:text-5xl block mt-4">
-				Panawagan Banner
+			
+			<a href="https://yellowbasket.lowbandwidthdreams.com/" class="text-center text-amber-50 text-3xl md:text-4xl lg:text-5xl block mt-4">
+				Yellow Basket
 			</a>
 
 			<a href="https://kolown.net/dropcall" class="text-center text-amber-50 text-3xl md:text-4xl lg:text-5xl block mt-4">
