@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '../app.css';
+	import { page } from '$app/stores';
 	const src = `/lbd2.svg`;
-	
 
 	let { children } = $props();
 	const favicon = `https://internetpavilion2025.web.app/icon.svg`;
@@ -15,6 +15,7 @@
 	<link rel="apple-touch-icon" href={favicon} />
 </svelte:head>
 
+{#if !$page.url.pathname.startsWith('/kiosk')}
 <header class="bg-green-700 text-amber-50">
 	<div class="max-w-5xl mx-auto flex flex-col items-center text-center gap-4 py-6 px-4">
 		<!-- Centered logo -->
@@ -39,14 +40,17 @@
 			<a href="/notes" class=" text-amber-50 text-lg">Notes</a>
 			<a href="/info" class=" text-amber-50 text-lg">About</a>
 			<a href="/participants" class=" text-amber-50 text-lg">Participants</a>
+			<a href="/kiosk" class=" text-amber-50 text-lg">Kiosk</a>
 		</nav>
 	</div>
 </header>
+{/if}
 
 <main class="bg-green-700 text-white min-h-screen">
 	{@render children?.()}
 </main>
 
+{#if !$page.url.pathname.startsWith('/kiosk')}
 <footer class="bg-green-700 text-amber-50">
 	<div class="max-w-5xl mx-auto text-center py-6 px-4">
 		<nav aria-label="Footer navigation" class="flex flex-wrap gap-4 justify-center">
@@ -56,3 +60,4 @@
 		</nav>
 	</div>
 </footer>
+{/if}

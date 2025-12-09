@@ -1,0 +1,57 @@
+[
+  {
+    "title": "Cyber_Purok",
+    "image": "cyberpurok.png",
+    "url": "https://cyberpurok.lowbandwidthdreams.com/",
+    "description": "on-going virtual 3d environment featuring 3d assets from Salawaki and Low Bandwidth Dreams projects. The goal is to create a MOBA-inspired virtual environment."
+  },
+
+  {
+    "title": "Power Plant ",
+    "image": "https://streetkonect.com/storage/object_curator/powerplant/5.jpg",
+    "url": "https://lowbandwidthdreams.com/power_plant",
+    "description": "a project by Luyo_Space, a zine documenting local medicinal plants. Currently the Luyo_Space artists are entering the data on excel sheet and we can view the progress on the website."
+  },
+
+
+  {
+    "title": "Error 405: Panawagan Cannot Be Fulfilled",
+    "image": "/panawagan.jpg",
+    "url": "https://lowbandwidthdreams.com/panawagan_banner",
+    "description": "viideo documentation of the Error 405: Panawagan Banner project by Gab Ferrer ."
+  },
+
+  {
+    "title": "Yellow Basket",
+    "image": "yellowbasket.png",
+    "url": "https://yellowbasket.lowbandwidthdreams.com/",
+    "description": "A project by Franco Mamaril . A satire of contemporary e-commerce platforms."
+  },
+
+  {
+    "title": "DropCall",
+    "image": "/dropcall.jpg",
+    "url": "https://kolown.net/H6tR9yWvB3q29kwnfnp/",
+    "description": "send a 2-sec voice message and will be broadcasted to GhostWhispers installation. A project by Roan Alvarez and KoloWn, currently installed also in Thailand Benniale 2025."
+  },
+
+  {
+    "title": "Aninipot",
+    "image": "/aninipot.jpg",
+    "url": "https://lowbandwidthdreams.com/",
+    "description": "builds by Roan Alvarez and Rhaz Oriente, will lit up if receives a data from dropcall"
+  },
+
+    {
+    "title": "Dagyaw Radio",
+    "image": "/dagyawradio.jpg",
+    "url": "https://lowbandwidthdreams.com/",
+    "description": "3pm radio program on GhostWhispers installations"
+  }
+
+
+
+  
+
+
+]
