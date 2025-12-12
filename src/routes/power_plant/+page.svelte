@@ -9,6 +9,7 @@
     let plants: any[] = [];
     let status: string = '';
     let generating = false;
+    let progress = 0;
 
     const BASE_IMAGE_URL = 'https://streetkonect.com/storage/object_curator/powerplant';
 
@@ -39,19 +40,40 @@
     });
 
     // Convert an image URL to a data URL (base64) for embedding in jsPDF
+    // Tries direct CORS fetch first; if that fails, falls back to images.weserv.nl proxy.
     async function imageUrlToDataURL(url: string) {
+        if (!url) return null;
+
+        const blobToDataUrl = (b: Blob) => new Promise<string>((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result as string);
+            reader.onerror = reject;
+            reader.readAsDataURL(b);
+        });
+
+        // 1) Try direct fetch (works if origin has CORS)
         try {
-            const res = await fetch(url);
-            if (!res.ok) throw new Error('Image fetch failed');
-            const blob = await res.blob();
-            return await new Promise<string>((resolve, reject) => {
-                const reader = new FileReader();
-                reader.onloadend = () => resolve(reader.result as string);
-                reader.onerror = reject;
-                reader.readAsDataURL(blob);
-            });
+            const res = await fetch(url, { mode: 'cors' });
+            if (res.ok) {
+                const blob = await res.blob();
+                return await blobToDataUrl(blob);
+            }
+        } catch (e) {
+            // continue to fallback
+        }
+
+        // 2) Fallback to images.weserv.nl public proxy
+        try {
+            const u = new URL(url);
+            const remote = encodeURIComponent(u.host + u.pathname + (u.search || ''));
+            // request a reasonably sized image; adjust `w` param as needed
+            const proxied = `https://images.weserv.nl/?url=${remote}&w=1600&output=png`;
+            const res2 = await fetch(proxied);
+            if (!res2.ok) throw new Error('weserv fetch failed');
+            const blob2 = await res2.blob();
+            return await blobToDataUrl(blob2);
         } catch (err) {
-            console.warn('Could not load image for PDF', url, err);
+            console.warn('Could not load image for PDF (direct and proxy failed):', url, err);
             return null;
         }
     }
@@ -60,6 +82,7 @@
     async function generatePdf(preview = false) {
         if (!plants || plants.length === 0) return alert('No plant data to export');
         generating = true;
+        progress = 0;
         try {
             const { jsPDF } = await import('jspdf');
 
@@ -97,8 +120,8 @@
                         const iw = img.width;
                         const ih = img.height;
                         const maxW = contentW;
-                        // Reserve up to ~45% of page height for image, keep margins
-                        const maxH = (pageH - margin * 2) * 0.45;
+                        // Reserve up to ~60% of page height for image, keep margins
+                        const maxH = (pageH - margin * 2) * 0.6;
                         let drawW = maxW;
                         let drawH = (ih * drawW) / iw;
                         if (drawH > maxH) {
@@ -118,6 +141,9 @@
                 const titleLines = pdf.splitTextToSize(title, contentW);
                 pdf.text(titleLines, margin, y);
                 y += titleLines.length * lineHeight + 4;
+
+                // update progress after each plant page is rendered
+                progress = Math.round(((i + 1) / plants.length) * 100);
 
                 // 3) Meta lines: render item no before name (if present) and render labeled fields
                 pdf.setFontSize(10);
@@ -169,6 +195,9 @@
                 for (let k = 0; k < toAdd; k++) pdf.addPage();
             }
 
+            // mark complete
+            progress = 100;
+
             if (preview) {
                 const blob = pdf.output('blob');
                 const url = URL.createObjectURL(blob);
@@ -181,6 +210,7 @@
             alert('PDF generation failed — check console for details.');
         } finally {
             generating = false;
+            setTimeout(() => progress = 0, 800);
         }
     }
 </script>
@@ -194,11 +224,17 @@
               The goal is to generate a pdf for zine in this web page.</p>
         </div>
 
-        <div class="w-full max-w-6xl mt-6 flex gap-3 justify-center">
-            <button class="px-4 py-2 bg-green-700 text-white rounded" on:click={() => generatePdf(true)} disabled={generating}>
-                {generating ? 'Generating…' : 'Preview PDF'}
+        <div class="w-full max-w-6xl mt-6 flex flex-col items-center gap-3">
+            <button class="px-4 py-2 bg-green-700 text-white rounded flex items-center gap-2" on:click={() => generatePdf(true)} disabled={generating}>
+                {generating ? `Generating… (${progress}%)` : 'Preview PDF'}
             </button>
-            <!-- Download button removed per request; only Preview remains -->
+            {#if generating}
+                <div class="w-full max-w-6xl mt-2 px-4">
+                    <div class="h-2 bg-gray-700 rounded overflow-hidden">
+                        <div class="h-2 bg-green-500" style="width: {progress}%"></div>
+                    </div>
+                </div>
+            {/if}
         </div>
 
         <div class="w-full max-w-6xl mt-8">
