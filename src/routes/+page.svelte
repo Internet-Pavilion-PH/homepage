@@ -14,7 +14,7 @@
 	>
 		<div class="mx-auto max-w-6xl space-y-9 px-4">
 
-	<a href="https://kolown.net/dagyawradio" class="mt-4 block text-center text-3xl text-amber-50 md:text-4xl lg:text-5xl">
+	<a href="https://dagyawradio.lowbandwidthdreams.com/" class="mt-4 block text-center text-3xl text-amber-50 md:text-4xl lg:text-5xl">
 				Dagyaw Radio
 			</a>
 
