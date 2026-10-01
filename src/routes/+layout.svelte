@@ -36,11 +36,11 @@
 
 		<!-- Centered navigation -->
 		<nav aria-label="Main navigation" class="flex flex-wrap gap-4 justify-center">
-			<a href="/" class=" text-amber-50 text-lg">ESC 2025</a>
-			<a href="/notes" class=" text-amber-50 text-lg">Notes</a>
-			<a href="/info" class=" text-amber-50 text-lg">About</a>
-			<a href="/participants" class=" text-amber-50 text-lg">Participants</a>
-			<a href="/kiosk" class=" text-amber-50 text-lg">Kiosk</a>
+			<!-- <a href="/" class=" text-amber-50 text-lg">ESC 2025</a>
+			<a href="/notes" class=" text-amber-50 text-lg">Notes</a> -->
+			<!-- <a href="/info" class=" text-amber-50 text-lg">About</a>
+			<a href="/participants" class=" text-amber-50 text-lg">Participants</a> -->
+			<!-- <a href="/kiosk" class=" text-amber-50 text-lg">Kiosk</a> -->
 		</nav>
 	</div>
 </header>
@@ -54,6 +54,11 @@
 <footer class="bg-green-700 text-amber-50">
 	<div class="max-w-5xl mx-auto text-center py-6 px-4">
 		<nav aria-label="Footer navigation" class="flex flex-wrap gap-4 justify-center">
+			<a href="/" class="underline text-amber-50">ESC 2025</a>
+			<a href="/notes" class="underline text-amber-50">Notes</a>
+			<a href="/info" class="underline text-amber-50">About</a>
+			<a href="/participants" class="underline text-amber-50">Participants</a>
+			<a href="/kiosk" class="underline text-amber-50">Kiosk</a>
 			<a href="https://internetpavilion2024.web.app/" class="underline text-amber-50">IP 2024</a>
 			<a href="https://internetpavilion2025.web.app/" class="underline text-amber-50">IP 2025</a>
 			<a href="https://github.com/Internet-Pavilion-PH" class="underline text-amber-50">GitHub Org</a>
